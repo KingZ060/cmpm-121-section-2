@@ -24,7 +24,8 @@ function main()
     {
         score++;
         setText("Score: " + score);
-        checkGameOver();
+        requestAnimationFrame(checkGameOver);
+        // checkGameOver();
     }
 }
 
