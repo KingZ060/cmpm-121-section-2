@@ -38,7 +38,8 @@ function jump()
         {
             isJumping = true;
             dino?.classList.add("jump");
-            setTimeout(removeJump, 500);
+            setTimeout(removeJump, 750); 
+            //Change timer so if dino hit the back of the bird still count as Fail
         }
     }
     else
@@ -78,35 +79,31 @@ function checkGameOver()
         let birdleft = parseInt(window.getComputedStyle(bird).getPropertyValue("left"));
 
         //detect cactus collision
-        if(dinoTop >= 150 && Math.abs(cactusleft) < 7)
+        if(dinoTop >= 150 && cactusleft < 7)
         {
-            //end game
-            console.log("player died!");
-            setText("Final Score: " + score + "! Click To Play Again!");
-            gameOver = true;
-
-            //reset player
-            removeJump();
-            
-            //reset cactus
-            removeObstacles();
+            endgame();
         }
 
         //detect bird collision
-        if(dinoTop <= 55 && Math.abs(birdleft) < 11)
+        if(dinoTop <= 55 && birdleft < 11)
         {
-            //end game
-            console.log("player died!");
-            setText("Final Score: " + score + "! Click To Play Again!");
-            gameOver = true;
-
-            //reset player
-            removeJump();
-            
-            //reset cactus
-            removeObstacles();
+            endgame();
         }
     }
+}
+
+
+function endgame(){
+    //end game
+    console.log("player died!");
+    setText("Final Score: " + score + "! Click To Play Again!");
+    gameOver = true;
+
+    //reset player
+    removeJump();
+    
+    //reset cactus
+    removeObstacles();
 }
 
 
